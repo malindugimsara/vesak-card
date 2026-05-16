@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vesak greeting card design system — deep night sky, golden glow, saffron warmth */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Sinhala:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 230 55% 6%;
+    --foreground: 45 80% 92%;
+
+    --card: 232 45% 10%;
+    --card-foreground: 45 80% 92%;
+
+    --popover: 232 45% 10%;
+    --popover-foreground: 45 80% 92%;
+
+    --primary: 42 90% 60%;
+    --primary-foreground: 230 55% 8%;
+
+    --secondary: 232 40% 16%;
+    --secondary-foreground: 45 80% 92%;
+
+    --muted: 232 30% 18%;
+    --muted-foreground: 45 30% 75%;
+
+    --accent: 28 90% 58%;
+    --accent-foreground: 230 55% 8%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 232 35% 22%;
+    --input: 232 35% 22%;
+    --ring: 42 90% 60%;
+
+    --radius: 1rem;
+
+    --gold: 42 90% 60%;
+    --gold-glow: 45 100% 70%;
+    --saffron: 28 95% 55%;
+    --lotus: 340 70% 75%;
+    --night-deep: 232 60% 4%;
+    --night-mid: 230 55% 9%;
+    --night-light: 225 50% 18%;
+    --moon-glow: 48 87% 80%;
+    --temple-orange: 25 89% 55%;
+
+    --gradient-sky: radial-gradient(ellipse at top, hsl(225 50% 18%) 0%, hsl(230 55% 9%) 50%, hsl(232 60% 4%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(42 90% 60%), hsl(28 95% 55%));
+    --gradient-card: linear-gradient(160deg, hsl(232 45% 12% / 0.95), hsl(230 55% 8% / 0.95));
+
+    --glow-gold: 0 0 40px hsl(45 100% 65% / 0.5), 0 0 80px hsl(42 90% 60% / 0.3);
+    --glow-soft: 0 0 60px hsl(45 100% 70% / 0.25);
+    --shadow-card: 0 30px 80px -20px hsl(0 0% 0% / 0.6), 0 0 0 1px hsl(42 90% 60% / 0.15);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cormorant Garamond', 'Noto Serif Sinhala', serif;
+    background: var(--gradient-sky);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .font-sinhala {
+    font-family: 'Noto Serif Sinhala', serif;
+  }
+
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.02em;
+  }
+
+  .font-sinhala-sans {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+  }
+
+  .font-heading {
+    font-family: 'Cinzel', 'Playfair Display', serif;
+    letter-spacing: 0.06em;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--gold-glow) / 0.6), 0 0 40px hsl(var(--gold) / 0.4);
+  }
+  .text-glow-soft {
+    text-shadow: 0 0 12px hsl(var(--gold-glow) / 0.5);
+  }
+  .glow-gold {
+    box-shadow: var(--glow-gold);
+  }
+  .glow-soft {
+    box-shadow: var(--glow-soft);
+  }
+  .bg-gradient-sky {
+    background: var(--gradient-sky);
+  }
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  .text-gold-glow {
+    color: hsl(var(--gold-glow));
+  }
+  .glass {
+    background: linear-gradient(135deg, hsl(var(--gold) / 0.06), hsl(var(--night-light) / 0.25));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid hsl(var(--gold) / 0.25);
+    box-shadow: 0 10px 40px -10px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(var(--gold) / 0.15);
+  }
+  .gold-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+      linear-gradient(135deg, hsl(var(--gold)), hsl(var(--saffron)), hsl(var(--gold-glow))) border-box;
+  }
+}
