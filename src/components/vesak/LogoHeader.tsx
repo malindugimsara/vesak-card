@@ -18,7 +18,7 @@ const LogoHeader = ({ size = 96 }: { size?: number }) => {
         className="drop-shadow-[0_0_25px_hsl(var(--gold-glow)/0.6)]"
         style={{ width: size, height: size, objectFit: "contain" }}
       />
-      <span className="hidden lg:block font-display text-xs uppercase tracking-[0.4em] text-gold/80">
+      <span className="lg:block font-display text-xs uppercase tracking-[0.4em] text-gold/80">
         code craft
       </span>
     </motion.div>
