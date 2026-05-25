@@ -7,7 +7,6 @@ import IntroLoader from "@/components/vesak/IntroLoader";
 import ClickToLight from "@/components/vesak/ClickToLight";
 import HeroSection from "@/components/vesak/HeroSection";
 import LanternStreet from "@/components/vesak/LanternStreet";
-import ThoranaSection from "@/components/vesak/ThoranaSection";
 import DansalaSection from "@/components/vesak/DansalaSection";
 import TempleSection from "@/components/vesak/BuddhaQuotes";
 import FinalBlessing from "@/components/vesak/FinalBlessing";
@@ -78,13 +77,16 @@ const Index = () => {
             onJourney={() => scrollTo(journeyRef.current)}
             onLight={() => scrollTo(templeRef.current)}
           />
-          <SacredEventCards />
+          <div ref={templeRef}>
+            <SacredEventCards />
+          </div>
+          
           <div ref={journeyRef}>
             <ExternalThorana />
             <LanternStreet />
             {/* <ThoranaSection /> */}
             <DansalaSection />
-            <TempleSection ref={templeRef} />
+            <TempleSection />
             <FinalBlessing onReplay={replay} />
           </div>
           <Footer />

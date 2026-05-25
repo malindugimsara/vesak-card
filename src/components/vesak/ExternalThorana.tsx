@@ -44,7 +44,7 @@ const ExternalThorana = () => {
 
         {/* The External Link */}
         <iframe
-          src="https://athukorala-group-digital-thorana.netlify.app/pc"
+          src="https://kusa-jathakaya-thorana.vercel.app/index.html"
           title="Digital Vesak Thorana"
           className="absolute inset-0 z-10 h-full w-full border-none"
           allowFullScreen 

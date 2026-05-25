@@ -1,23 +1,22 @@
 import { motion } from "framer-motion";
 import { Share2, RotateCcw } from "lucide-react";
 import lotus from "@/assets/lotus.png";
-import { toast } from "sonner";
+// 1. ADDED: react-router-dom එකෙන් useNavigate import කිරීම
+import { useNavigate } from "react-router-dom"; 
 
 interface Props {
   onReplay: () => void;
 }
 
 const FinalBlessing = ({ onReplay }: Props) => {
-  const share = async () => {
-    const text = "සියලු සත්ත්වයෝ සුවපත් වෙත්වා — May all beings be happy and peaceful. 🪔";
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "Vesak Blessing", text, url: window.location.href });
-      } catch {/* cancelled */}
-    } else {
-      await navigator.clipboard.writeText(`${text}\n${window.location.href}`);
-      toast.success("Blessing copied to clipboard");
-    }
+  // 2. ADDED: navigate function එක හදාගැනීම
+  const navigate = useNavigate();
+
+  // 3. UPDATED: Share button එක එබුවම Admin page එකට යන විදිහට හැදුවා
+  const handleShareClick = () => {
+    // ඔයාගේ App.tsx එකේ Admin page එකට දීලා තියෙන path එක මෙතන දෙන්න.
+    // උදාහරණයක් විදිහට "/admin" හෝ "/vesak-admin"
+    navigate("/share-card"); 
   };
 
   return (
@@ -48,6 +47,7 @@ const FinalBlessing = ({ onReplay }: Props) => {
       >
         සියලු සත්ත්වයෝ සුවපත් වෙත්වා
       </motion.h2>
+      
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -59,18 +59,22 @@ const FinalBlessing = ({ onReplay }: Props) => {
       </motion.p>
 
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        
+        {/* UPDATED Button: onClick එක handleShareClick වලට වෙනස් කළා */}
         <button
-          onClick={share}
+          onClick={handleShareClick}
           className="bg-gradient-gold glow-gold inline-flex items-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
         >
           <Share2 className="h-4 w-4" /> Share Blessing
         </button>
+
         <button
           onClick={onReplay}
           className="glass inline-flex items-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-widest text-gold-glow transition-transform hover:scale-105"
         >
           <RotateCcw className="h-4 w-4" /> Replay Journey
         </button>
+
       </div>
     </section>
   );

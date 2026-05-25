@@ -1,24 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Flame, ChevronDown } from "lucide-react";
 
 interface Props {
   onJourney: () => void;
-  onLight: () => void;
+  // 1. FIX: මෙතන 'onLight' විදිහටම තියන්න ඕනේ, මොකද Index.tsx එකෙන් pass කරන්නේ ඒ නමින්.
+  onLight: () => void; 
 }
 
 const HeroSection = ({ onJourney, onLight }: Props) => {
-  
   const [isArrowHighlighted, setIsArrowHighlighted] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const name = searchParams.get("name");
+    if (name) {
+      setUserName(name);
+    }
+  }, []);
 
   const handleLightClick = () => {
-    
     setIsArrowHighlighted(true);
     
-   
+    // 2. FIX: මෙතනට onLight() කෝල් කරන්න ඕනේ.
     onLight();
 
-   
     setTimeout(() => {
       setIsArrowHighlighted(false);
     }, 3000);
@@ -44,9 +51,16 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
         <p className="font-heading mb-4 mt-12 text-md uppercase tracking-[0.2em] text-gold/70 sm:text-sm lg:text-xl">
           වෙසක් පෝය 2026
         </p>
-        <h1 className="font-sinhala text-glow text-3xl font-bold leading-tight text-gold-glow sm:text-5xl md:text-6xl">
-          සැමට සුබ වෙසක් මංගල්‍යයක් වේවා!
+        
+        <h1 className="text-glow flex flex-col gap-3 text-3xl font-bold leading-tight text-gold-glow sm:text-5xl md:text-6xl">
+          <span className="font-sinhala">
+            {userName ? `${userName}, සුබ වෙසක් මංගල්‍යයක් වේවා!` : "සැමට සුබ වෙසක් මංගල්‍යයක් වේවා!"}
+          </span>
+          <span className="font-display text-2xl sm:text-4xl md:text-5xl opacity-90">
+            {userName ? `Happy Vesak, ${userName}!` : "Happy Vesak to All!"}
+          </span>
         </h1>
+        
         <p className="font-sinhala-sans mx-auto mt-6 max-w-2xl text-base leading-relaxed text-foreground/85 sm:text-xl">
           දයාව, කරුණාව සහ ප්‍රඥාවෙන් ලොව ආලෝකමත් කරමු.
         </p>
@@ -58,7 +72,8 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            onClick={handleLightClick} // මෙතනට අලුත් function එක දැම්මා
+            // 3. FIX: මෙතනට handleLightClick දෙන්න, එතකොට arrow එකත් එක්කම scroll වෙනවා.
+            onClick={handleLightClick} 
             className="bg-gradient-gold glow-gold inline-flex items-center gap-2 rounded-full px-8 py-3 font-heading text-sm font-semibold uppercase tracking-widest text-primary-foreground"
           >
             <Sparkles className="h-4 w-4" /> වෙසක් බලන්න යමු
@@ -74,20 +89,20 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
         </div>
       </motion.div>
 
-      {/* ─── Scroll Down Arrow (Highlighted when Clicked) ─── */}
+      {/* ─── Scroll Down Arrow ─── */}
       <motion.div
         animate={
           isArrowHighlighted
             ? { 
                 y: [0, 15, 0], 
-                scale: [1, 1.3, 1], // Click කරාම ලොකු වෙනවා
+                scale: [1, 1.3, 1],
                 opacity: [1, 0.8, 1] 
               }
             : { y: [0, 10, 0], scale: 1, opacity: 0.6 }
         }
         transition={
           isArrowHighlighted
-            ? { duration: 1, repeat: Infinity, ease: "easeInOut" } // Highlight වෙලා තියෙනකොට වේගෙන් වැඩ කරනවා
+            ? { duration: 1, repeat: Infinity, ease: "easeInOut" }
             : { duration: 2, repeat: Infinity, ease: "easeInOut" }
         }
         className={`absolute bottom-8 z-10 flex flex-col items-center justify-center rounded-full transition-all duration-500 ${
