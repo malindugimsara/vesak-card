@@ -12,7 +12,7 @@ export const VesakInviteGenerator = () => {
   const inviteLink = `${baseUrl}/?name=${encodeURIComponent(userName)}`;
   
   // Vesak WhatsApp Message Template
-  const messageTemplate = `*සුබ වෙසක් මංගල්‍යයක් වේවා ${userName}!* 🪷✨\n\n*ඉස්සර වගේ දැන් වෙසක් කාඩ් ලියන්න වෙන්නෙ නෑ කාලයත් එක්ක ඔක්කොම වෙනස් වෙලා...* 🥺\n\n*හැබැයි ඉස්සර වගේ වෙසක් කාඩ් නැති උනත් ඒ සුන්දර අතීතය මතක් වෙන්නත් එක්කම අලුත් විදිහකට මගෙන් ඔයාට පුංචි වෙසක් සුබ පැතුමක්....* 💛\n\nHappy Vesak, ${userName}! 🪷✨\nWishing you and your family a very Happy Vesak! 🪷✨\n\n*පහළ ලින්ක් එක open කරල බලන්න 👇:*\nClick the link below:\n\n${inviteLink}`;
+  const messageTemplate = `*සුබ වෙසක් මංගලයක් වේවා ${userName}!* 🪷✨\n\n*ඉස්සර වගේ දැන් වෙසක් කාඩ් ලියන්න වෙන්නෙ නෑ කාලයත් එක්ක ඔක්කොම වෙනස් වෙලා...* 🥺\n\n*හැබැයි ඉස්සර වගේ වෙසක් කාඩ් නැති උනත් ඒ සුන්දර අතීතය මතක් වෙන්නත් එක්කම අලුත් විදිහකට මගෙන් ඔයාට පුංචි වෙසක් සුබ පැතුමක්....* 💛\n\nHappy Vesak, ${userName}! 🪷✨\nWishing you and your family a very Happy Vesak! 🪷✨\n\n*පහළ ලින්ක් එක open කරල බලන්න 👇:*\nClick the link below:\n\n${inviteLink}`;
 
   const handleWhatsAppShare = () => {
     if (!userName.trim()) {
