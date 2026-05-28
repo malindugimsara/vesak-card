@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 
 const ExternalThorana = () => {
   return (
-    // ─── වෙනස 1: max-w-[100vw] සහ overflow-hidden එක් කළා සම්පූර්ණ පිටුව එළියට පැනීම වැළැක්වීමට ───
     <section className="relative flex min-h-screen w-full max-w-[100vw] flex-col items-center justify-center overflow-hidden py-20">
       
       {/* Title Section */}
@@ -25,13 +24,12 @@ const ExternalThorana = () => {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        // ─── අලුත්: තොරණ 50% ක් Screen එකට ආවාම Music Pause වෙනවා ───
         onViewportEnter={() => window.dispatchEvent(new Event("pause-bgm"))}
-        // ─── අලුත්: තොරණ Screen එකෙන් ගියාම Music Resume වෙනවා ───
         onViewportLeave={() => window.dispatchEvent(new Event("resume-bgm"))}
-        viewport={{ once: false, amount: 0.4 }} // 40% ක් පෙනෙද්දී ක්‍රියාත්මක වේ
+        viewport={{ once: false, amount: 0.4 }} 
         transition={{ duration: 1, delay: 0.2 }}
-        className="relative aspect-video w-[95vw] max-w-5xl overflow-hidden rounded-xl border-2 border-yellow-500/30 bg-black shadow-[0_0_40px_rgba(250,204,21,0.15)] sm:rounded-2xl"
+        // ─── වෙනස: aspect-[9/16] (Mobile) සහ md:aspect-video (Desktop) එක් කළා. Desktop වල පළල වැඩි කළා. ───
+        className="relative overflow-hidden rounded-xl border-2 border-yellow-500/30 bg-black shadow-[0_0_40px_rgba(250,204,21,0.15)] sm:rounded-2xl aspect-[9/16] w-[90vw] max-w-sm sm:max-w-md md:aspect-video md:w-[95vw] md:max-w-4xl lg:max-w-5xl"
       >
         
         {/* Loading Spinner */}
@@ -44,7 +42,7 @@ const ExternalThorana = () => {
 
         {/* The External Link */}
         <iframe
-          src="https://kusa-jathakaya-thorana.vercel.app/index.html"
+          src="https://kusa-jathakaya-thorana.vercel.app"
           title="Digital Vesak Thorana"
           className="absolute inset-0 z-10 h-full w-full border-none"
           allowFullScreen 
@@ -59,11 +57,8 @@ const ExternalThorana = () => {
          transition={{ delay: 0.8 }}
          className="mt-8 flex flex-col items-center px-4"
       >
-        <p className="mb-4 max-w-[80vw] text-center font-sinhala text-xs text-yellow-100/50 md:hidden">
-          * හොඳම අත්දැකීම සඳහා දුරකථනය හරවන්න (Landscape)
-        </p>
         <a 
-          href="https://athukorala-group-digital-thorana.netlify.app/pc" 
+          href="https://kusa-jathakaya-thorana.vercel.app" 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex rounded-full border border-yellow-500/50 bg-yellow-500/10 px-6 py-2.5 font-sinhala text-sm text-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.2)] transition-all hover:bg-yellow-500 hover:text-black"

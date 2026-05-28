@@ -65,7 +65,7 @@ const FinalBlessing = ({ onReplay }: Props) => {
           onClick={handleShareClick}
           className="bg-gradient-gold glow-gold inline-flex items-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
         >
-          <Share2 className="h-4 w-4" /> Share Blessing
+          <Share2 className="h-4 w-4" /> Share Vesak Card
         </button>
 
         <button
