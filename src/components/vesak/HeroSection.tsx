@@ -89,7 +89,8 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
       {isInviteCard ? (
         /* ─── 3D Book Layout (Share Card View) ─── */
         <div 
-          className="relative z-10 w-[90vw] max-w-[380px] md:max-w-[460px] lg:max-w-[500px] aspect-[3/4] mt-24 md:mt-32"
+          // ─── වෙනස: Mobile වලදී aspect-[2/3] සහ min-h-[550px] යොදා උස වැඩි කළා. Desktop එකට sm:aspect-[3/4] දුන්නා ───
+          className="relative z-10 w-[90vw] max-w-[380px] md:max-w-[460px] lg:max-w-[500px] min-h-[550px] sm:min-h-0 aspect-[2/3] sm:aspect-[3/4] mt-24 md:mt-32"
           style={{ perspective: "1500px" }}
         >
           <motion.div
@@ -99,7 +100,6 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
           >
             {/* ─── Right Page (Inside Content) ─── */}
             <div
-              // ─── වෙනස: justify-center ඉවත් කර justify-start සහ pt-12 (උඩින් ඉඩ) එකතු කළා ───
               className={`absolute inset-0 bg-gradient-to-br from-[#1a150b] via-black to-[#0a0a0a] sm:backdrop-blur-xl border border-yellow-500/30 sm:border-2 sm:border-yellow-500/40 rounded-r-3xl rounded-l-md p-4 pt-12 sm:p-6 sm:pt-14 md:p-8 md:pt-16 flex flex-col justify-start items-center shadow-lg sm:shadow-[0_0_60px_rgba(250,204,21,0.25)] transition-opacity duration-1000 overflow-y-auto overflow-x-hidden ${
                 isCardOpen ? "opacity-100" : "opacity-0"
               }`}
@@ -130,7 +130,7 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
                 {senderName && (
                   <div className="mt-2 bg-gradient-to-r from-yellow-500/10 via-yellow-500/20 to-yellow-500/10 border border-yellow-500/40 rounded-2xl py-3 px-4 sm:px-8 flex flex-col items-center shadow-[0_0_20px_rgba(250,204,21,0.15)] w-full max-w-[280px] sm:max-w-sm">
                     <span className="font-sinhala text-[10px] sm:text-xs text-yellow-100/80 mb-1">මේ පුංචි සුබ පැතුම</span>
-                    <span className="font-sinhala text-lg sm:text-xl md:text-2xl text-yellow-400 font-extrabold drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] tracking-wide break-words whitespace-normal text-center w-full leading-tight">
+                    <span className="font-sinhala text-lg sm:text-xl md:text-2xl text-green-400 font-extrabold drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] tracking-wide break-words whitespace-normal text-center w-full leading-tight">
                       "{senderName}"
                     </span>
                     <span className="font-sinhala text-[10px] sm:text-xs text-yellow-100/80 mt-1">ගෙන්... 💛</span>
@@ -145,7 +145,6 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               </div>
 
               {/* Action Buttons */}
-              {/* ─── වෙනස: mt-auto එකතු කළා, එවිට බොත්තම් ටික කාඩ් එකේ පහළටම තල්ලු වේවි ─── */}
               <div className="w-full flex flex-col gap-3 px-1 sm:px-2 mt-auto pb-2">
                 <p className="font-sinhala text-xs sm:text-sm text-yellow-500/80 text-center mb-1">පහතින් තෝරන්න 👇</p>
                 
