@@ -28,11 +28,11 @@ const quotes = [
 const BuddhaQuotes = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // තත්පර 6කට වරක් ගාථාව මාරු වීම
+  // තත්පර 15කට වරක් ගාථාව මාරු වීම
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % quotes.length);
-    }, 6000); // 6000ms = 6 seconds
+    }, 15000); // 15 seconds
 
     return () => clearInterval(timer);
   }, []);
@@ -62,8 +62,8 @@ const BuddhaQuotes = () => {
         </svg>
       </motion.div>
 
-      {/* ─── Glowing Orbs ─── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full bg-yellow-600/10 blur-[100px] z-0" />
+      {/* ─── Glowing Orbs (Mobile Optimization: blur අඩු කර ඇත) ─── */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-40 w-40 sm:h-64 sm:w-64 rounded-full bg-yellow-600/10 blur-[50px] sm:blur-[100px] z-0 pointer-events-none" />
 
       {/* ─── Title ─── */}
       <motion.h2 
@@ -71,36 +71,38 @@ const BuddhaQuotes = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="font-sinhala text-glow text-3xl font-bold text-gold-glow sm:text-5xl mb-4 lg:mb-12"
+        // Mobile වලදී glow effect ඉවත් කර drop shadow යෙදීම
+        className="font-sinhala text-3xl sm:text-5xl font-bold text-yellow-400 drop-shadow-md sm:drop-shadow-[0_0_15px_rgba(250,204,21,0.6)] mb-6 lg:mb-12"
       >
         ❖ ධම්ම පදය ❖
       </motion.h2>
 
-      {/* ─── Quotes Container (WITH BORDER & CARD) ─── */}
-      <div className="z-10 flex min-h-[300px] w-[90%] max-w-3xl flex-col items-center justify-center p-8 md:p-12 text-center
-//                       border border-yellow-500/30 rounded-2xl bg-black/20 backdrop-blur-sm shadow-[0_0_30px_rgba(250,204,21,0.2)]">
-        {/* mode="wait" දැමීමෙන් පළමු එක මැකී ගිය පසුව ඊළඟ එක පෙන්වයි */}
+      {/* ─── Quotes Container ─── */}
+      {/* වෙනස: වැරදි Comment ඉවත් කර, Mobile වලදී shadow සහ blur ඉවත් කළා */}
+      <div className="z-10 flex min-h-[300px] w-[90%] max-w-3xl flex-col items-center justify-center p-6 sm:p-8 md:p-12 text-center border border-yellow-500/20 sm:border-yellow-500/30 rounded-2xl sm:rounded-3xl bg-black/60 sm:bg-black/20 sm:backdrop-blur-sm shadow-md sm:shadow-[0_0_30px_rgba(250,204,21,0.2)]">
+        
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentIndex} // Key එක මාරු වන විට framer-motion අලුත් animation එකක් run කරයි
-            initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -20, filter: "blur(5px)" }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-6"
+            key={currentIndex} 
+            // ─── වෙනස: GPU බර අඩු කිරීමට filter: "blur(5px)" සම්පූර්ණයෙන්ම ඉවත් කර opacity සහ Y පමණක් තැබුවා ───
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center gap-4 sm:gap-6"
           >
             {/* පාලි ගාථාව */}
-            <p className="font-sinhala text-xl md:text-3xl font-medium leading-relaxed text-yellow-300 drop-shadow-[0_0_10px_rgba(253,224,71,0.5)]">
+            <p className="font-sinhala text-lg sm:text-xl md:text-3xl font-medium leading-relaxed text-yellow-300 drop-shadow-sm sm:drop-shadow-[0_0_10px_rgba(253,224,71,0.5)]">
               "{quotes[currentIndex].pali}"
             </p>
 
             {/* සිංහල තේරුම */}
-            <p className="font-sinhala text-lg md:text-xl text-yellow-100/90">
+            <p className="font-sinhala text-base sm:text-lg md:text-xl text-yellow-100/90">
               {quotes[currentIndex].sinhala}
             </p>
 
             {/* English Translation */}
-            <p className="mt-4 font-display text-sm md:text-base italic tracking-wide text-yellow-200/50">
+            <p className="mt-2 sm:mt-4 font-display text-xs sm:text-sm md:text-base italic tracking-wide text-yellow-200/50">
               {quotes[currentIndex].english}
             </p>
           </motion.div>
@@ -108,7 +110,7 @@ const BuddhaQuotes = () => {
       </div>
 
       {/* ─── Quote Indicator Dots ─── */}
-      <div className="z-10 mt-12 flex gap-3">
+      <div className="z-10 mt-10 sm:mt-12 flex gap-3">
         {quotes.map((_, idx) => (
           <button
             key={idx}

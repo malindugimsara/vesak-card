@@ -9,7 +9,7 @@ interface Props {
 }
 
 const VideoModal = ({ event, onClose }: Props) => {
-  // ─── අලුතින් එකතු කළ Loading State එක ───
+  // ─── Loading State එක ───
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -24,9 +24,16 @@ const VideoModal = ({ event, onClose }: Props) => {
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     
+    // ─── අලුත් Trick එක: තත්පර 1.5 කට පසු අනිවාර්යයෙන්ම Loading Screen එක ඉවත් කිරීම (Fallback) ───
+    // Iframe onLoad event එක පරක්කු වුණත් මෙයින් වීඩියෝව ඉක්මනින් පෙන්වයි.
+    const fallbackTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      clearTimeout(fallbackTimer); // Timer එක Clear කිරීම
       
       // ─── වීඩියෝව වැසූ පසු නැවත BGM පටන් ගන්න ───
       window.dispatchEvent(new Event("resume-bgm"));
@@ -50,17 +57,11 @@ const VideoModal = ({ event, onClose }: Props) => {
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl overflow-hidden rounded-3xl bg-gradient-card p-4 shadow-card gold-border sm:p-6"
+            // ─── flex-col සහ max-h-[95vh] යොදා කාඩ් එක Mobile එකට ගැලපෙන සේ සකස් කළා ───
+            className="relative w-full max-w-4xl max-h-[95vh] flex flex-col overflow-hidden rounded-3xl bg-gradient-card p-4 shadow-card gold-border sm:p-6"
           >
-            <button
-              onClick={onClose}
-              aria-label="Close video"
-              className="absolute right-4 top-4 z-10 rounded-full border border-gold/40 bg-background/60 p-2 text-gold/90 backdrop-blur-md transition hover:border-gold hover:text-gold-glow"
-            >
-              <X size={18} />
-            </button>
-
-            <div className="relative overflow-hidden rounded-2xl bg-night-deep ring-1 ring-gold/20 flex items-center justify-center min-h-[250px] sm:min-h-[400px]">
+            
+            <div className="relative overflow-hidden rounded-2xl bg-night-deep ring-1 ring-gold/20 flex items-center justify-center min-h-[200px] sm:min-h-[400px] flex-shrink-0">
               
               {/* ─── Loading Spinner ─── */}
               {isLoading && (
@@ -80,22 +81,34 @@ const VideoModal = ({ event, onClose }: Props) => {
                 className={`aspect-video w-full border-none transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                // Iframe එක සම්පූර්ණයෙන් Load වුණාම isLoading false කරනවා
+                // Iframe එක සම්පූර්ණයෙන් Load වුණාම isLoading false කරනවා. (නමුත් Fallback එක ඊටත් කලින් වැඩ කළ හැක).
                 onLoad={() => setIsLoading(false)} 
               ></iframe>
             </div>
 
-            <div className="px-2 py-5 text-center sm:px-6">
-              <h3 className="font-sinhala text-glow-soft text-2xl font-bold text-gold-glow">
+            {/* ─── විස්තරය overflow-y-auto දමා Scroll විය හැකි ලෙස සකස් කළා ─── */}
+            <div className="px-2 py-4 text-center sm:px-6 overflow-y-auto flex-1">
+              <h3 className="font-sinhala text-glow-soft text-xl sm:text-2xl font-bold text-gold-glow">
                 {event.sinhala}
               </h3>
-              <p className="font-heading mt-1 text-sm uppercase tracking-[0.3em] text-gold/90">
+              <p className="font-heading mt-1 text-xs sm:text-sm uppercase tracking-[0.3em] text-gold/90">
                 {event.english}
               </p>
-              <p className="font-display mx-auto mt-3 max-w-2xl text-base italic text-foreground/80">
+              <p className="font-display mx-auto mt-2 sm:mt-3 max-w-2xl text-sm sm:text-base italic text-foreground/80">
                 {event.description}
               </p>
             </div>
+
+            {/* ─── පහළ Close Button එක ─── */}
+            <div className="mt-2 flex justify-center pt-2 border-t border-yellow-500/20">
+              <button
+                onClick={onClose}
+                className="flex items-center gap-2 bg-gradient-to-r from-red-900/80 to-red-700 hover:from-red-600 hover:to-red-500 border border-red-500/50 text-white px-8 py-3 rounded-full font-sinhala font-bold text-sm sm:text-base shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all active:scale-95"
+              >
+                <X className="w-5 h-5" /> Close
+              </button>
+            </div>
+
           </motion.div>
         </motion.div>
       )}

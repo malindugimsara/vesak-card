@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Music, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 
-const TRACK = "/vesak-bgm.mp3"; 
+const TRACK = "/vesak-bgm.m4a"; 
 
 interface MusicToggleProps {
   autoPlay?: boolean;
@@ -14,7 +14,7 @@ export const MusicToggle = ({ autoPlay }: MusicToggleProps) => {
   
   const hasAttemptedPlay = useRef(false);
   
-  // ─── අලුත්: සිග්නල් ආවම කලින් play වුණාද කියලා මතක තියාගන්න ───
+  // සිග්නල් ආවම හෝ Tab එක මාරු කළාම කලින් play වුණාද කියලා මතක තියාගන්න
   const playingRef = useRef(playing);
   const wasPlayingRef = useRef(false);
 
@@ -29,18 +29,52 @@ export const MusicToggle = ({ autoPlay }: MusicToggleProps) => {
     audio.loop = true;
     audio.volume = 0.4; 
     ref.current = audio;
+
+    // ─── වෙනස 1: Tab එක Close කරන විට හෝ Refresh කරන විට ශබ්දය නැවැත්වීම ───
+    const handleBeforeUnload = () => {
+      if (ref.current) {
+        ref.current.pause();
+        ref.current = null;
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
     
     return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
       audio.pause();
+      audio.src = ""; // Memory leak වැළැක්වීමට
       ref.current = null;
     };
   }, []);
 
-  // ─── අලුත්: Custom Events හඳුනාගැනීම (Pause / Resume) ───
+  // ─── වෙනස 2: App එක Minimize කළ විට හෝ වෙනත් Tab එකකට ගිය විට ශබ්දය හැසිරවීම (Page Visibility API) ───
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // පිටුව පේන්නේ නැත්නම් (Minimize / Tab මාරු කළොත්)
+        if (ref.current && playingRef.current) {
+          wasPlayingRef.current = true; // ප්ලේ වෙවී තිබුණු බව මතක තියාගන්නවා
+          ref.current.pause();
+          setPlaying(false);
+        }
+      } else {
+        // ආපහු පිටුවට ආවම
+        if (ref.current && wasPlayingRef.current) {
+          ref.current.play().then(() => setPlaying(true)).catch(() => {});
+          wasPlayingRef.current = false;
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
+  // Custom Events හඳුනාගැනීම (Pause / Resume) - (තොරණ සඳහා)
   useEffect(() => {
     const handlePauseBGM = () => {
       if (ref.current && playingRef.current) {
-        wasPlayingRef.current = true; // ප්ලේ වෙවී තිබුණු බව මතක තියාගන්නවා
+        wasPlayingRef.current = true;
         ref.current.pause();
         setPlaying(false);
       }
@@ -69,7 +103,7 @@ export const MusicToggle = ({ autoPlay }: MusicToggleProps) => {
         ref.current.play().then(() => setPlaying(true)).catch(() => {});
       } else {
         ref.current.addEventListener('canplay', () => {
-          if (!playingRef.current) {
+          if (!playingRef.current && !document.hidden) { // පිටුව පෙනෙනවා නම් පමණක් play කරන්න
             ref.current?.play().then(() => setPlaying(true)).catch(() => {});
           }
         }, { once: true });
@@ -79,7 +113,7 @@ export const MusicToggle = ({ autoPlay }: MusicToggleProps) => {
 
   useEffect(() => {
     const handleUserInteraction = () => {
-      if (ref.current && !playing && !hasAttemptedPlay.current) {
+      if (ref.current && !playing && !hasAttemptedPlay.current && !document.hidden) {
         hasAttemptedPlay.current = true;
         if (ref.current.readyState >= 2) {
           ref.current.play().then(() => setPlaying(true)).catch(() => {});
