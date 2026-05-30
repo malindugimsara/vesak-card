@@ -119,7 +119,7 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               
               <div className="text-center w-full px-1 sm:px-2 flex flex-col items-center justify-center">
                 <h1 className="font-sinhala font-bold flex flex-col items-center gap-1 mb-2 w-full max-w-[280px] sm:max-w-sm">
-                  <span className="text-3xl sm:text-4xl md:text-3xl text-yellow-300 drop-shadow-[0_0_15px_rgba(250,204,21,0.9)] break-words whitespace-normal text-center w-full leading-tight">
+                  <span className="text-3xl sm:text-4xl md:text-5xl text-yellow-300 drop-shadow-[0_0_15px_rgba(250,204,21,0.9)] break-words whitespace-normal text-center w-full leading-tight">
                     {receiverName ? receiverName : "ඔබ සැමට"}
                   </span>
                   <span className="text-sm sm:text-base md:text-lg text-yellow-100/90 mt-1 whitespace-normal text-center">
