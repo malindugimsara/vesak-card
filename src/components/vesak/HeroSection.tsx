@@ -148,26 +148,26 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               <div className="w-full flex flex-col gap-3 px-1 sm:px-2 mt-auto pb-2">
                 <p className="font-sinhala text-xs sm:text-sm text-yellow-500/80 text-center mb-1">පහතින් තෝරන්න 👇</p>
                 
-                <button onClick={handleLightClick} className="group relative w-full flex items-center justify-between bg-gradient-to-r from-yellow-600/90 to-yellow-500/80 p-3 sm:p-4 rounded-xl border border-yellow-400/50 shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.3)] transition-transform active:scale-95">
+                <button onClick={handleShareClick} className="group relative w-full flex items-center justify-between bg-gradient-to-r from-yellow-600/90 to-yellow-500/80 p-3 sm:p-4 rounded-xl border border-yellow-400/50 shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.3)] transition-transform active:scale-95">
                   <div className="flex items-center gap-3">
                     <div className="bg-black/30 p-2 rounded-full"><Sparkles className="w-5 h-5 text-white" /></div>
-                    <div className="text-left"><span className="block font-sinhala font-bold text-black text-sm sm:text-base">වෙසක් නරඹන්න</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-black/80">පහන් කූඩු සහ සැරසිලි</span></div>
+                    <div className="text-left"><span className="block font-sinhala font-bold text-black text-sm sm:text-base">ඔබත් සුබපැතුමක් යවන්න</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-black/80">පහන් කූඩු සහ සැරසිලි</span></div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-black/80 group-hover:translate-x-1 transition-transform" />
                 </button>
 
-                <button onClick={onJourney} className="group relative w-full flex items-center justify-between bg-black/60 hover:bg-yellow-500/10 p-3 sm:p-4 rounded-xl border border-yellow-500/40 transition-transform active:scale-95">
+                <button onClick={handleLightClick} className="group relative w-full flex items-center justify-between bg-black/60 hover:bg-yellow-500/10 p-3 sm:p-4 rounded-xl border border-yellow-500/40 transition-transform active:scale-95">
                   <div className="flex items-center gap-3">
                     <div className="bg-yellow-500/10 p-2 rounded-full"><Flame className="w-5 h-5 text-yellow-400" /></div>
-                    <div className="text-left"><span className="block font-sinhala font-bold text-yellow-400 text-sm sm:text-base">ඩිජිටල් තොරණ</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-yellow-100/60">කුස ජාතක කතාව</span></div>
+                    <div className="text-left"><span className="block font-sinhala font-bold text-yellow-400 text-sm sm:text-base">වෙසක් නරඹන්න</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-yellow-100/60">කුස ජාතක කතාව</span></div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-yellow-500/80 group-hover:translate-x-1 transition-transform" />
                 </button>
 
-                <button onClick={handleShareClick} className="group relative w-full flex items-center justify-between bg-white/5 hover:bg-white/10 p-3 sm:p-4 rounded-xl border border-white/10 transition-transform active:scale-95">
+                <button onClick={onJourney} className="group relative w-full flex items-center justify-between bg-white/5 hover:bg-white/10 p-3 sm:p-4 rounded-xl border border-white/10 transition-transform active:scale-95">
                   <div className="flex items-center gap-3">
                     <div className="bg-white/10 p-2 rounded-full"><Share2 className="w-5 h-5 text-white" /></div>
-                    <div className="text-left"><span className="block font-sinhala font-bold text-white text-sm sm:text-base">ඔබත් සුබපැතුමක් යවන්න</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-white/50">ඔබේ නමින් කාඩ් එකක්</span></div>
+                    <div className="text-left"><span className="block font-sinhala font-bold text-white text-sm sm:text-base">ඩිජිටල් තොරණ</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-white/50">ඔබේ නමින් කාඩ් එකක්</span></div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-white/50 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -256,34 +256,34 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               
-              <button onClick={handleLightClick} className="group relative flex flex-col items-center justify-center p-6 bg-gradient-to-br from-yellow-600/90 to-yellow-500/80 rounded-2xl border border-yellow-400/50 shadow-md sm:shadow-[0_0_20px_rgba(250,204,21,0.3)] transition-transform active:scale-95 overflow-hidden">
+              <button onClick={handleShareClick} className="group relative flex flex-col items-center justify-center p-6 bg-gradient-to-br from-yellow-600/90 to-yellow-500/80 rounded-2xl border border-yellow-400/50 shadow-md sm:shadow-[0_0_20px_rgba(250,204,21,0.3)] transition-transform active:scale-95 overflow-hidden">
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 <div className="relative z-10 flex flex-col items-center">
                   <div className="bg-black/20 p-4 rounded-full mb-3 shadow-inner">
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <span className="font-sinhala text-lg sm:text-xl font-bold text-black w-full text-center">වෙසක් නරඹන්න</span>
-                  <span className="font-sinhala-sans text-xs sm:text-sm text-black/80 mt-1 font-medium">පහන් කූඩු සහ සැරසිලි</span>
+                  <span className="font-sinhala text-lg sm:text-xl font-bold text-black w-full text-center">වෙසක් කාඩ් යවන්න</span>
+                  <span className="font-sinhala-sans text-xs sm:text-sm text-black/80 mt-1 font-medium">ඔබේ නමින් කාඩ් එකක්</span>
                 </div>
               </button>
 
-              <button onClick={onJourney} className="group relative flex flex-col items-center justify-center p-6 bg-black/60 sm:bg-[#111] rounded-2xl border border-yellow-500/40 sm:border-yellow-500/50 shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.1)] transition-transform active:scale-95 hover:bg-yellow-500/10 overflow-hidden">
+              <button onClick={handleLightClick} className="group relative flex flex-col items-center justify-center p-6 bg-black/60 sm:bg-[#111] rounded-2xl border border-yellow-500/40 sm:border-yellow-500/50 shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.1)] transition-transform active:scale-95 hover:bg-yellow-500/10 overflow-hidden">
                 <div className="relative z-10 flex flex-col items-center">
                   <div className="bg-yellow-500/10 p-4 rounded-full mb-3 shadow-inner">
                     <Flame className="w-8 h-8 text-yellow-400" />
                   </div>
-                  <span className="font-sinhala text-lg sm:text-xl font-bold text-yellow-400 w-full text-center">ඩිජිටල් තොරණ</span>
-                  <span className="font-sinhala-sans text-xs sm:text-sm text-yellow-100/60 mt-1 font-medium">කුස ජාතක කතාව</span>
+                  <span className="font-sinhala text-lg sm:text-xl font-bold text-yellow-400 w-full text-center">වෙසක් නරඹන්න</span>
+                  <span className="font-sinhala-sans text-xs sm:text-sm text-yellow-100/60 mt-1 font-medium">පහන් කූඩු සහ සැරසිලි</span>
                 </div>
               </button>
 
-              <button onClick={handleShareClick} className="group relative flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 hover:bg-white/10 shadow-md sm:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-transform active:scale-95 overflow-hidden">
+              <button onClick={onJourney} className="group relative flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 hover:bg-white/10 shadow-md sm:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-transform active:scale-95 overflow-hidden">
                 <div className="relative z-10 flex flex-col items-center">
                   <div className="bg-white/10 p-4 rounded-full mb-3 shadow-inner">
                     <Share2 className="w-8 h-8 text-white" />
                   </div>
-                  <span className="font-sinhala text-lg sm:text-xl font-bold w-full text-center text-white">වෙසක් කාඩ් යවන්න</span>
-                  <span className="font-sinhala-sans text-xs sm:text-sm text-white/50 mt-1 font-medium">ඔබේ නමින් කාඩ් එකක්</span>
+                  <span className="font-sinhala text-lg sm:text-xl font-bold w-full text-center text-white">ඩිජිටල් තොරණ</span>
+                  <span className="font-sinhala-sans text-xs sm:text-sm text-white/50 mt-1 font-medium">කුස ජාතක කතාව</span>
                 </div>
               </button>
 
