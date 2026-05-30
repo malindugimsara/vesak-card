@@ -99,7 +99,8 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
           >
             {/* ─── Right Page (Inside Content) ─── */}
             <div
-              className={`absolute inset-0 bg-gradient-to-br from-[#1a150b] via-black to-[#0a0a0a] sm:backdrop-blur-xl border border-yellow-500/30 sm:border-2 sm:border-yellow-500/40 rounded-r-3xl rounded-l-md p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center shadow-lg sm:shadow-[0_0_60px_rgba(250,204,21,0.25)] transition-opacity duration-1000 overflow-y-auto overflow-x-hidden ${
+              // ─── වෙනස: justify-center ඉවත් කර justify-start සහ pt-12 (උඩින් ඉඩ) එකතු කළා ───
+              className={`absolute inset-0 bg-gradient-to-br from-[#1a150b] via-black to-[#0a0a0a] sm:backdrop-blur-xl border border-yellow-500/30 sm:border-2 sm:border-yellow-500/40 rounded-r-3xl rounded-l-md p-4 pt-12 sm:p-6 sm:pt-14 md:p-8 md:pt-16 flex flex-col justify-start items-center shadow-lg sm:shadow-[0_0_60px_rgba(250,204,21,0.25)] transition-opacity duration-1000 overflow-y-auto overflow-x-hidden ${
                 isCardOpen ? "opacity-100" : "opacity-0"
               }`}
               style={{ pointerEvents: isCardOpen ? "auto" : "none" }}
@@ -116,23 +117,23 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
                 ~ වෙසක් පෝය 2026 ~
               </p>
               
-              <div className="text-center w-full px-2">
-                <h1 className="font-sinhala font-bold leading-tight flex flex-col items-center gap-1 mb-2">
-                  <span className="text-2xl sm:text-3xl md:text-4xl text-yellow-300 drop-shadow-[0_0_15px_rgba(250,204,21,0.9)]">
+              <div className="text-center w-full px-1 sm:px-2 flex flex-col items-center justify-center">
+                <h1 className="font-sinhala font-bold flex flex-col items-center gap-1 mb-2 w-full max-w-[280px] sm:max-w-sm">
+                  <span className="text-xl sm:text-2xl md:text-3xl text-yellow-300 drop-shadow-[0_0_15px_rgba(250,204,21,0.9)] break-words whitespace-normal text-center w-full leading-tight">
                     {receiverName ? receiverName : "ඔබ සැමට"}
                   </span>
-                  <span className="text-base sm:text-lg md:text-xl text-yellow-100/90 mt-1">
+                  <span className="text-sm sm:text-base md:text-lg text-yellow-100/90 mt-1 whitespace-normal text-center">
                     සුබ වෙසක් මංගල්‍යයක් වේවා!
                   </span>
                 </h1>
 
                 {senderName && (
-                  <div className="mt-3 bg-gradient-to-r from-yellow-500/10 via-yellow-500/20 to-yellow-500/10 border border-yellow-500/40 rounded-2xl py-2 px-5 sm:px-8 inline-block shadow-[0_0_20px_rgba(250,204,21,0.15)]">
-                    <span className="font-sinhala text-xs sm:text-sm text-yellow-100/80 block mb-1">මේ පුංචි සුබ පැතුම</span>
-                    <span className="font-sinhala text-xl sm:text-2xl md:text-3xl text-yellow-400 font-extrabold drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] block tracking-wide">
+                  <div className="mt-2 bg-gradient-to-r from-yellow-500/10 via-yellow-500/20 to-yellow-500/10 border border-yellow-500/40 rounded-2xl py-3 px-4 sm:px-8 flex flex-col items-center shadow-[0_0_20px_rgba(250,204,21,0.15)] w-full max-w-[280px] sm:max-w-sm">
+                    <span className="font-sinhala text-[10px] sm:text-xs text-yellow-100/80 mb-1">මේ පුංචි සුබ පැතුම</span>
+                    <span className="font-sinhala text-lg sm:text-xl md:text-2xl text-yellow-400 font-extrabold drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] tracking-wide break-words whitespace-normal text-center w-full leading-tight">
                       "{senderName}"
                     </span>
-                    <span className="font-sinhala text-xs sm:text-sm text-yellow-100/80 block mt-1">ගෙන්... 💛</span>
+                    <span className="font-sinhala text-[10px] sm:text-xs text-yellow-100/80 mt-1">ගෙන්... 💛</span>
                   </div>
                 )}
               </div>
@@ -144,7 +145,8 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               </div>
 
               {/* Action Buttons */}
-              <div className="w-full flex flex-col gap-3 px-1 sm:px-2">
+              {/* ─── වෙනස: mt-auto එකතු කළා, එවිට බොත්තම් ටික කාඩ් එකේ පහළටම තල්ලු වේවි ─── */}
+              <div className="w-full flex flex-col gap-3 px-1 sm:px-2 mt-auto pb-2">
                 <p className="font-sinhala text-xs sm:text-sm text-yellow-500/80 text-center mb-1">පහතින් තෝරන්න 👇</p>
                 
                 <button onClick={handleLightClick} className="group relative w-full flex items-center justify-between bg-gradient-to-r from-yellow-600/90 to-yellow-500/80 p-3 sm:p-4 rounded-xl border border-yellow-400/50 shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.3)] transition-transform active:scale-95">
@@ -179,7 +181,7 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               style={{ 
                 transformStyle: "preserve-3d", 
                 transformOrigin: "left center", 
-                pointerEvents: isCardOpen ? "none" : "auto", // කාඩ් එක Open වූ පසු ඇතුළේ බොත්තම් ඔබන්නට ඉඩ සලසයි
+                pointerEvents: isCardOpen ? "none" : "auto", 
                 zIndex: 20 
               }}
               animate={{ rotateY: isCardOpen ? -155 : 0 }}
@@ -209,7 +211,7 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               >
                 <div 
                   className="w-full h-full flex flex-col items-center justify-center opacity-40 border-r border-yellow-500/50 pointer-events-auto"
-                  onClick={(e) => { e.stopPropagation(); setIsCardOpen(false); }} // වම් පිටුව එබූ විට නැවත කාඩ් එක වැසෙයි
+                  onClick={(e) => { e.stopPropagation(); setIsCardOpen(false); }} 
                 >
                   <span className="text-6xl sm:text-7xl text-yellow-500 drop-shadow-lg">🪷</span>
                 </div>
@@ -282,6 +284,7 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
                     <Share2 className="w-8 h-8 text-white" />
                   </div>
                   <span className="font-sinhala text-lg sm:text-xl font-bold w-full text-center text-white">වෙසක් කාඩ් යවන්න</span>
+                  <span className="font-sinhala-sans text-xs sm:text-sm text-white/50 mt-1 font-medium">ඔබේ නමින් කාඩ් එකක්</span>
                 </div>
               </button>
 

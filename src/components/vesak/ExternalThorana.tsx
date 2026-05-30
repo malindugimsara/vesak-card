@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 
 const ExternalThorana = () => {
   const [showHint, setShowHint] = useState(true);
+  
+  // ─── අලුත් State එක: තොරණ Viewport එකේ තියෙනවද කියලා බලන්න ───
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const handleIframeFocus = () => {
@@ -48,11 +51,18 @@ const ExternalThorana = () => {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        onViewportEnter={() => window.dispatchEvent(new Event("pause-bgm"))}
-        onViewportLeave={() => window.dispatchEvent(new Event("resume-bgm"))}
-        viewport={{ once: false, amount: 0.1 }} 
-        transition={{ duration: 0.8, delay: 0.2 }} // transition duration එක 1 ඉඳන් 0.8 කරලා වේගවත් කළා
-        // ─── වෙනස: Mobile වලදී Shadow එක අඩු කර sm: හරහා Desktop වලට පමණක් ලොකු Shadow එකක් දුන්නා ───
+        // ─── වෙනස: Viewport එකට ආවම true කරනවා, එළියට ගියාම false කරනවා ───
+        onViewportEnter={() => {
+          setIsInView(true);
+          window.dispatchEvent(new Event("pause-bgm"));
+        }}
+        onViewportLeave={() => {
+          setIsInView(false); // මෙතනදී iframe එක unmount වෙලා සද්දේ නවතිනවා
+          window.dispatchEvent(new Event("resume-bgm"));
+        }}
+        // amount: 0 යන්නෙන් අදහස් වෙන්නේ කන්ටේනරයෙන් 0% ක් හෝ පේනවා නම් onViewportEnter වැඩ කරන බවයි
+        viewport={{ once: false, amount: 0 }} 
+        transition={{ duration: 0.8, delay: 0.2 }}
         className="relative overflow-hidden rounded-xl border border-yellow-500/30 sm:border-2 bg-black shadow-lg sm:shadow-[0_0_40px_rgba(250,204,21,0.15)] sm:rounded-2xl aspect-[9/16] w-[90vw] max-w-sm sm:max-w-md md:aspect-video md:w-[95vw] md:max-w-5xl lg:max-w-[1200px] xl:max-w-[1400px]"
       >
         
@@ -64,7 +74,7 @@ const ExternalThorana = () => {
           </p>
         </div>
 
-        {/* ─── Unmute Hint ─── */}
+        {/* Unmute Hint */}
         <AnimatePresence>
           {showHint && (
             <motion.div
@@ -74,12 +84,11 @@ const ExternalThorana = () => {
               transition={{ delay: 3, duration: 0.8 }}
               className="pointer-events-none absolute bottom-4 right-14 sm:bottom-6 sm:right-16 z-20 flex items-center gap-2"
             >
-              {/* ─── වෙනස: Mobile වලදී blur සහ ලොකු shadow එක අයින් කළා ─── */}
               <div className="rounded-xl bg-black/90 px-3 py-1.5 font-sinhala text-[10px] sm:text-xs font-semibold text-yellow-400 border border-yellow-500/50 sm:backdrop-blur-md shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.3)] whitespace-nowrap">
                 ශබ්දය ඇසීමට Click කරන්න
               </div>
               <motion.div 
-                animate={{ x: [0, 5, 0] }} // Mobile වල animation දුර අඩු කළා
+                animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
                 className="text-yellow-400 text-lg sm:text-xl drop-shadow-md sm:drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"
               >
@@ -89,15 +98,17 @@ const ExternalThorana = () => {
           )}
         </AnimatePresence>
 
-        {/* The External Link */}
-        <iframe
-          src="https://codecraft-thorana.vercel.app/index.html"
-          title="Digital Vesak Thorana"
-          className="absolute inset-0 z-10 h-full w-full border-none"
-          allow="autoplay; fullscreen"
-          allowFullScreen 
-          loading="lazy" // ─── වෙනස: Iframe එකට loading="lazy" එකතු කළා පිටුව load වීමේ වේගය වැඩි කිරීමට ───
-        />
+        {/* ─── වෙනස: isInView එක true නම් පමණක් Iframe එක පෙන්වයි ─── */}
+        {isInView && (
+          <iframe
+            src="https://codecraft-thorana.vercel.app/index.html"
+            title="Digital Vesak Thorana"
+            className="absolute inset-0 z-10 h-full w-full border-none"
+            allow="autoplay; fullscreen"
+            allowFullScreen 
+            loading="lazy"
+          />
+        )}
       </motion.div>
 
       {/* Button Section */}
@@ -105,14 +116,13 @@ const ExternalThorana = () => {
          initial={{ opacity: 0 }}
          whileInView={{ opacity: 1 }}
          viewport={{ once: true }}
-         transition={{ delay: 0.5 }} // Delay අඩු කළා
+         transition={{ delay: 0.5 }}
          className="mt-8 flex flex-col items-center px-4"
       >
         <a 
           href="https://codecraft-thorana.vercel.app/index.html" 
           target="_blank" 
           rel="noopener noreferrer"
-          // ─── වෙනස: Shadow එක සරල කළා ───
           className="inline-flex rounded-full border border-yellow-500/50 bg-yellow-500/10 px-6 py-2.5 font-sinhala text-sm text-yellow-400 shadow-sm sm:shadow-[0_0_15px_rgba(234,179,8,0.2)] transition-colors hover:bg-yellow-500 hover:text-black"
         >
           Full Screen නැරඹීමට ↗
