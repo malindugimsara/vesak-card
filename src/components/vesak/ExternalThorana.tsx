@@ -101,7 +101,7 @@ const ExternalThorana = () => {
         {/* ─── වෙනස: isInView එක true නම් පමණක් Iframe එක පෙන්වයි ─── */}
         {isInView && (
           <iframe
-            src="https://codecraft-thorana.vercel.app/index.html"
+            src="https://kusa-jathakaya.codecraftsl.codes"
             title="Digital Vesak Thorana"
             className="absolute inset-0 z-10 h-full w-full border-none"
             allow="autoplay; fullscreen"
@@ -120,7 +120,7 @@ const ExternalThorana = () => {
          className="mt-8 flex flex-col items-center px-4"
       >
         <a 
-          href="https://codecraft-thorana.vercel.app/index.html" 
+          href="https://kusa-jathakaya.codecraftsl.codes" 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex rounded-full border border-yellow-500/50 bg-yellow-500/10 px-6 py-2.5 font-sinhala text-sm text-yellow-400 shadow-sm sm:shadow-[0_0_15px_rgba(234,179,8,0.2)] transition-colors hover:bg-yellow-500 hover:text-black"
