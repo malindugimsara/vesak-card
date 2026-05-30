@@ -134,7 +134,7 @@ export const VesakInviteGenerator = () => {
             <div className="bg-white/5 p-4 sm:p-6 rounded-2xl border border-white/10">
               <label className="flex items-center gap-3 text-base sm:text-lg font-bold text-yellow-400 mb-4 font-sinhala">
                 <span className="bg-yellow-500 text-black w-6 h-6 flex items-center justify-center rounded-full text-sm">1</span>
-                කාඩ් පතෙහි පින්තූරය තෝරන්න
+                කාඩ් පතෙහි පින්තූරය තෝරන්න (Select a Image)
               </label>
               <div className="grid grid-cols-4 gap-2 sm:gap-4">
                 {templates.map((tpl) => (
@@ -162,13 +162,13 @@ export const VesakInviteGenerator = () => {
             <div id="name-inputs" className="bg-white/5 p-4 sm:p-6 rounded-2xl border border-white/10 relative">
               <label className="flex items-center gap-3 text-base sm:text-lg font-bold text-yellow-400 mb-5 font-sinhala">
                 <span className="bg-yellow-500 text-black w-6 h-6 flex items-center justify-center rounded-full text-sm">2</span>
-                නම් දෙක ඇතුළත් කරන්න
+                නම් දෙක ඇතුළත් කරන්න (Insert Name)
               </label>
               
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-white/90 mb-2 font-sinhala">
-                    ඔබගේ නම (යවන කෙනා)
+                    ඔබගේ නම (From)
                   </label>
                   <input
                     type="text"
@@ -185,7 +185,7 @@ export const VesakInviteGenerator = () => {
 
                 <div>
                   <label className="block text-sm font-semibold text-white/90 mb-2 font-sinhala">
-                    යවන කෙනාගේ නම (ලබන කෙනා)
+                    ලබන්නාගෙ නම (To)
                   </label>
                   <input
                     type="text"
@@ -215,7 +215,7 @@ export const VesakInviteGenerator = () => {
             <div className="bg-gradient-to-br from-yellow-900/20 to-black/40 p-4 sm:p-6 rounded-2xl border-2 border-yellow-500/40 shadow-[0_0_30px_rgba(250,204,21,0.2)]">
               <label className="flex items-center gap-3 text-base sm:text-lg font-bold text-yellow-400 mb-4 font-sinhala">
                 <span className="bg-yellow-500 text-black w-6 h-6 flex items-center justify-center rounded-full text-sm">3</span>
-                යවන්න
+                යවන්න (Send)
               </label>
 
               <div className="flex flex-col sm:flex-row gap-4">
