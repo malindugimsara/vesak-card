@@ -260,8 +260,8 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
               <button onClick={handleShareClick} className="group relative flex flex-col items-center justify-center p-6 bg-gradient-to-br from-yellow-600/90 to-yellow-500/80 rounded-2xl border border-yellow-400/50 shadow-md sm:shadow-[0_0_20px_rgba(250,204,21,0.3)] transition-transform active:scale-95 overflow-hidden">
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="bg-black/20 p-4 rounded-full mb-3 shadow-inner">
-                    <Sparkles className="w-8 h-8 text-white" />
+                  <div className="bg-white/10 p-4 rounded-full mb-3 shadow-inner">
+                    <Share2 className="w-8 h-8 text-white" />
                   </div>
                   <span className="font-sinhala text-lg sm:text-xl font-bold text-black w-full text-center">වෙසක් කාඩ් යවන්න</span>
                   <span className="font-sinhala-sans text-xs sm:text-sm text-black/80 mt-1 font-medium">ඔබේ නමින් කාඩ් එකක්</span>
@@ -270,8 +270,9 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
 
               <button onClick={handleLightClick} className="group relative flex flex-col items-center justify-center p-6 bg-black/60 sm:bg-[#111] rounded-2xl border border-yellow-500/40 sm:border-yellow-500/50 shadow-md sm:shadow-[0_0_15px_rgba(250,204,21,0.1)] transition-transform active:scale-95 hover:bg-yellow-500/10 overflow-hidden">
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="bg-yellow-500/10 p-4 rounded-full mb-3 shadow-inner">
-                    <Flame className="w-8 h-8 text-yellow-400" />
+                  
+                  <div className="bg-black/20 p-4 rounded-full mb-3 shadow-inner">
+                    <Sparkles className="w-8 h-8 text-white" />
                   </div>
                   <span className="font-sinhala text-lg sm:text-xl font-bold text-yellow-400 w-full text-center">වෙසක් නරඹන්න</span>
                   <span className="font-sinhala-sans text-xs sm:text-sm text-yellow-100/60 mt-1 font-medium">පහන් කූඩු සහ සැරසිලි</span>
@@ -280,8 +281,8 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
 
               <button onClick={onJourney} className="group relative flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-white/30 hover:bg-white/10 shadow-md sm:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-transform active:scale-95 overflow-hidden">
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="bg-white/10 p-4 rounded-full mb-3 shadow-inner">
-                    <Share2 className="w-8 h-8 text-white" />
+                  <div className="bg-yellow-500/10 p-4 rounded-full mb-3 shadow-inner">
+                    <Flame className="w-8 h-8 text-yellow-400" />
                   </div>
                   <span className="font-sinhala text-lg sm:text-xl font-bold w-full text-center text-white">ඩිජිටල් තොරණ</span>
                   <span className="font-sinhala-sans text-xs sm:text-sm text-white/50 mt-1 font-medium">කුස ජාතක කතාව</span>
