@@ -166,7 +166,7 @@ const HeroSection = ({ onJourney, onLight }: Props) => {
 
                 <button onClick={onJourney} className="group relative w-full flex items-center justify-between bg-white/5 hover:bg-white/10 p-3 sm:p-4 rounded-xl border border-white/10 transition-transform active:scale-95">
                   <div className="flex items-center gap-3">
-                    <div className="bg-black/30 p-2 rounded-full"><Sparkles className="w-5 h-5 text-white" /></div>
+                    
                     <div className="bg-yellow-500/10 p-2 rounded-full"><Flame className="w-5 h-5 text-yellow-400" /></div>
                     <div className="text-left"><span className="block font-sinhala font-bold text-white text-sm sm:text-base">ඩිජිටල් තොරණ</span><span className="block font-sinhala-sans text-[10px] sm:text-xs text-white/50">කුස ජාතක කතාව</span></div>
                   </div>
